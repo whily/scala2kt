@@ -13,4 +13,4 @@ Clone this repository, add the path containing the package to the
 `load-path` in Emacs `init.el`, as well as adding `(require
 'scala2kt)`.
 
-In the buffer containing the file for conversion, type `M-x scala2gt`.
+In the buffer containing the file for conversion, type `M-x scala2kt`.
