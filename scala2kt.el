@@ -5,7 +5,7 @@
 ;; Author: Yujian Zhang <yujian.zhang@gmail.com>
 ;; Maintainer: Yujian Zhang <yujian.zhang@gmail.com>
 ;; Created: 17 Oct 2018
-;; Modified: 17 Oct 2018
+;; Modified: 20 Oct 2018
 ;; Version: 0.1
 ;; Package-Requires: ((emacs "24.3"))
 ;; Keywords: emacs scala kotlin
@@ -41,8 +41,14 @@
 
 (defcustom scala2kt-replace-regexps
   '(("^\\(import.*\\)_" "\\1*")
+    (" extends\\(.*\\) with\\(.*{\\)" ":\\1,\\2")
+    (" extends\\b" ":")
     ("\\bdef\\b" "fun")
-    ("\\bcase class\\b" "data class"))
+    ("\\bcase class\\b" "data class")
+    ("\\btrait\\b" "interface")
+    (" new\\b" "")
+    (" \\(map\\|filter\\) (\\(.*\\))" ".\\1 { \\2 }")
+    ("\\b_\\." "it."))
   "A list storing regexps for replacement.
 
 Each element of the list is a pair of two elements. First element
