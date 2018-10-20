@@ -40,15 +40,42 @@
   :prefix "scala2kt-")
 
 (defcustom scala2kt-replace-regexps
-  '(("^\\(import.*\\)_" "\\1*")
+  '(;; import
+    ("^\\(import.*\\)_" "\\1*")
+
+    ;; Class, interface
+    (" extends\\(.*\\) with\\(.*\\) with\\(.*\\) with\\(.*{\\)" ":\\1,\\2,\\3,\\4")
+    (" extends\\(.*\\) with\\(.*\\) with\\(.*{\\)" ":\\1,\\2,\\3")
     (" extends\\(.*\\) with\\(.*{\\)" ":\\1,\\2")
     (" extends\\b" ":")
-    ("\\bdef\\b" "fun")
     ("\\bcase class\\b" "data class")
     ("\\btrait\\b" "interface")
     (" new\\b" "")
+    ("(new " "(")
+
+    ;; Nullable
+    ("\\(var.*: [a-zA-z0-9_]+\\) = null" "\\1? = null")
+
+    ;; Function
+    ("\\bdef\\b" "fun")
+
+    ;; Lambda
     (" \\(map\\|filter\\) (\\(.*\\))" ".\\1 { \\2 }")
-    ("\\b_\\." "it."))
+    ("\\b_\\." "it.")
+
+    ;; For loop
+    ("\\(for (.*\\)<-" "\\1in")
+
+    ;; when
+    ("\\( +\\)\\(.*\\) match {" "\\1when (\\2) {")
+    ("case \\(.*\\) =>" "\\1 ->")
+
+    ;; Reflection (TODO: further check)
+    ("classOf\\[\\(.*\\)\\]" "\\1::class")
+
+    ;; Math
+    ("\\( \\|(\\)math." "\\1kotlin.math.")
+    )
   "A list storing regexps for replacement.
 
 Each element of the list is a pair of two elements. First element
