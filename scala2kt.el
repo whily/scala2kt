@@ -5,7 +5,7 @@
 ;; Author: Yujian Zhang <yujian.zhang@gmail.com>
 ;; Maintainer: Yujian Zhang <yujian.zhang@gmail.com>
 ;; Created: 17 Oct 2018
-;; Modified: 21 Oct 2018
+;; Modified: 22 Oct 2018
 ;; Version: 0.1
 ;; Package-Requires: ((emacs "24.3"))
 ;; Keywords: emacs scala kotlin
@@ -88,6 +88,21 @@
 
     ;; Math
     ("\\( \\|(\\)math." "\\1kotlin.math.")
+
+    ;; Array
+    ("= Array(" "= arrayOf(")
+
+    ;; List
+    ("= List(" "= listOf(")
+
+    ;; HashMap
+    ("mutable\\.HashMap\\[\\(.*?\\)]" "HashMap<\\1>")
+
+    ;; Regex
+    ("import scala.util.matching.Regex\n" "")
+
+    ;; Range
+    ("Range(\\(.*\\), ?\\(.*\\))" "\\1 until \\2")
     )
   "A list storing regexps for replacement.
 
