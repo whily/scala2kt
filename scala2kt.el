@@ -5,7 +5,7 @@
 ;; Author: Yujian Zhang <yujian.zhang@gmail.com>
 ;; Maintainer: Yujian Zhang <yujian.zhang@gmail.com>
 ;; Created: 17 Oct 2018
-;; Modified: 22 Oct 2018
+;; Modified: 05 Nov 2018
 ;; Version: 0.1
 ;; Package-Requires: ((emacs "24.3"))
 ;; Keywords: emacs scala kotlin
@@ -91,12 +91,14 @@
 
     ;; Array
     ("= Array(" "= arrayOf(")
+    ("\\.toArray" ".toCharArray()")
 
     ;; List
     ("= List(" "= listOf(")
 
     ;; HashMap
     ("mutable\\.HashMap\\[\\(.*?\\)]" "HashMap<\\1>")
+    ("\\.contains(" ".containsKey(")
 
     ;; Regex
     ("import scala.util.matching.Regex\n" "")
