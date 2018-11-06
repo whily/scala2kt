@@ -5,7 +5,7 @@
 ;; Author: Yujian Zhang <yujian.zhang@gmail.com>
 ;; Maintainer: Yujian Zhang <yujian.zhang@gmail.com>
 ;; Created: 17 Oct 2018
-;; Modified: 05 Nov 2018
+;; Modified: 06 Nov 2018
 ;; Version: 0.1
 ;; Package-Requires: ((emacs "24.3"))
 ;; Keywords: emacs scala kotlin
@@ -92,6 +92,7 @@
     ;; Array
     ("= Array(" "= arrayOf(")
     ("\\.toArray" ".toCharArray()")
+    ("\\.mkString(" ".joinToString(separator = ")
 
     ;; List
     ("= List(" "= listOf(")
@@ -104,8 +105,7 @@
     ("import scala.util.matching.Regex\n" "")
 
     ;; Range
-    ("Range(\\(.*\\), ?\\(.*\\))" "\\1 until \\2")
-    )
+    ("Range(\\(.*\\), ?\\(.*\\))" "\\1 until \\2"))
   "A list storing regexps for replacement.
 
 Each element of the list is a pair of two elements. First element
